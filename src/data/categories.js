@@ -1,0 +1,41 @@
+export const categories = {
+  technology: [
+    "Web Development",
+    "MERN Stack",
+    "Data Science",
+    "Data Analytics",
+    "Cyber Security",
+    "Python Full Stack",
+    "Java Full Stack",
+    "DevOps",
+    "App Development",
+    "Other",
+  ],
+
+  subject: [
+    "DSA",
+    "DAA",
+    "DBMS",
+    "Operating System",
+    "Computer Networks",
+    "OOPs",
+    "System Design",
+    "SQL",
+    "Software Engineering",
+    "Other",
+  ],
+
+  language: [
+    "C",
+    "C++",
+    "Java",
+    "Python",
+    "JavaScript",
+    "TypeScript",
+    "C#",
+    ".NET",
+    "PHP",
+    "Go",
+    "Other",
+  ],
+};
