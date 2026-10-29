@@ -10,11 +10,13 @@ const model = genAI.getGenerativeModel({
 
 export const generateQuestions = async (
   technology,
-  topics = []
+  topics = [],
+  questionCount = 10
 ) => {
   try {
     let prompt = "";
 
+    // MERN, Web Dev etc.
     if (topics.length > 0) {
       prompt = `
 You are an interview preparation assistant.
@@ -26,18 +28,19 @@ ${topics.join(", ")}
 
 Instructions:
 
-1. Generate TOP 10 interview questions for EACH topic.
+1. Generate TOP ${questionCount} interview questions for EACH topic.
 2. For every question provide:
    - question
    - answer
    - explanation
    - two simple examples
 3. Use very simple and beginner-friendly English.
-4. Answers should be easy to understand.
-5. Explanation should be short.
+4. Answers should be easy to understand for beginners.
+5. Explanation should be short and clear.
 6. Examples should be practical.
 7. Return ONLY valid JSON.
 8. Do NOT return markdown.
+9. Every topic should contain exactly ${questionCount} questions.
 
 Format:
 
@@ -52,39 +55,32 @@ Format:
         "const btn = <button>Click</button>;"
       ]
     }
-  ],
-
-  "MongoDB": [
-    {
-      "question": "What is MongoDB?",
-      "answer": "MongoDB is a NoSQL database that stores data in documents.",
-      "explanation": "It stores data in JSON-like format.",
-      "examples": [
-        "{ name: 'Rahul', age: 22 }",
-        "{ title: 'React Book', price: 500 }"
-      ]
-    }
   ]
 }
 `;
     } else {
+      // DSA, Java, Python, Other etc.
       prompt = `
 You are an interview preparation assistant.
 
-Generate TOP 10 interview questions for:
+Generate TOP ${questionCount} interview questions for:
 
 ${technology}
 
-For every question provide:
+Instructions:
 
-- question
-- answer
-- explanation
-- two examples
-
-Use very simple English.
-
-Return ONLY valid JSON.
+1. Generate exactly ${questionCount} interview questions.
+2. For every question provide:
+   - question
+   - answer
+   - explanation
+   - two examples
+3. Use simple and beginner-friendly English.
+4. Answers should be easy to understand.
+5. Explanation should be short and practical.
+6. Examples should be real-world and easy.
+7. Return ONLY valid JSON.
+8. Do NOT return markdown.
 
 Format:
 

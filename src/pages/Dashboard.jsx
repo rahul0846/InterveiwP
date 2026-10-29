@@ -9,121 +9,145 @@ import {
   FaVenusMars,
 } from "react-icons/fa";
 
+import Navbar from "../components/Navbar";
+import WelcomeCard from "../components/WelcomeCard";
+import IntroCard from "../components/IntroCard";
+import Footer from "../components/Footer";
+
 function Dashboard() {
-  const user = JSON.parse(localStorage.getItem("userInfo"));
+  const user = JSON.parse(
+    localStorage.getItem("userInfo")
+  );
 
   const hour = new Date().getHours();
 
-  let greeting = "Good Evening 🌙";
+  let greeting = "Good Evening";
 
   if (hour < 12) {
-    greeting = "Good Morning ☀️";
+    greeting = "Good Morning";
   } else if (hour < 18) {
-    greeting = "Good Afternoon 🌤️";
+    greeting = "Good Afternoon";
   }
 
   const cards = [
     {
       icon: <FaEnvelope />,
       title: "Email",
-      value: user?.email || "Not Provided",
+      value:
+        user?.email ||
+        "Not Provided",
     },
     {
       icon: <FaUniversity />,
       title: "College",
-      value: user?.college,
+      value:
+        user?.college ||
+        "Not Provided",
     },
     {
       icon: <FaGraduationCap />,
       title: "Branch",
-      value: user?.branch,
+      value:
+        user?.branch ||
+        "Not Provided",
     },
     {
       icon: <FaBriefcase />,
       title: "Experience",
-      value: user?.experience,
+      value:
+        user?.experience ||
+        "Not Provided",
     },
     {
       icon: <FaVenusMars />,
       title: "Gender",
-      value: user?.gender,
+      value:
+        user?.gender ||
+        "Not Provided",
     },
     {
       icon: <FaUser />,
       title: "Year",
-      value: user?.year,
+      value:
+        user?.year ||
+        "Not Provided",
     },
   ];
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-slate-950 text-white">
 
-      {/* Glow */}
-      <div className="absolute top-0 left-0 h-80 w-80 rounded-full bg-cyan-500/20 blur-[120px]" />
-      <div className="absolute bottom-0 right-0 h-80 w-80 rounded-full bg-purple-500/20 blur-[120px]" />
+      {/* Glow Effects */}
+      <div className="absolute left-0 top-0 h-80 w-80 rounded-full bg-cyan-500/20 blur-[140px]" />
 
-      <div className="relative z-10 px-6 py-14">
+      <div className="absolute bottom-0 right-0 h-80 w-80 rounded-full bg-purple-500/20 blur-[140px]" />
 
-        <motion.div
-          initial={{ opacity: 0, y: 60 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="mx-auto max-w-6xl"
-        >
+      <div className="relative z-10">
+        <Navbar />
+
+        <div className="mx-auto max-w-7xl px-6 py-12">
+
           {/* Welcome */}
-          <div className="text-center">
-            <h2 className="text-xl text-cyan-400">
-              {greeting}
-            </h2>
-
-            <h1 className="mt-4 text-5xl font-bold">
-              Welcome, {user?.name} 👋
-            </h1>
-
-            <p className="mx-auto mt-6 max-w-3xl text-lg text-gray-300">
-              Your personalized AI interview preparation journey starts now.
-              Practice with AI-generated questions and prepare for your dream job.
-            </p>
-          </div>
+          <WelcomeCard
+            name={user?.name}
+            branch={user?.branch}
+            college={user?.college}
+            greeting={greeting}
+          />
 
           {/* User Details */}
-          <div className="mt-16 grid gap-6 md:grid-cols-3">
-            {cards.map((card, index) => (
-              <motion.div
-                key={index}
-                whileHover={{ scale: 1.05 }}
-                className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl"
-              >
-                <div className="mb-4 text-3xl text-cyan-400">
-                  {card.icon}
-                </div>
+          <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {cards.map(
+              (card, index) => (
+                <motion.div
+                  key={index}
+                  whileHover={{
+                    scale: 1.04,
+                    y: -5,
+                  }}
+                  className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl"
+                >
+                  <div className="mb-5 text-3xl text-cyan-400">
+                    {card.icon}
+                  </div>
 
-                <h3 className="text-gray-400">
-                  {card.title}
-                </h3>
+                  <h3 className="text-sm uppercase tracking-wide text-gray-400">
+                    {card.title}
+                  </h3>
 
-                <p className="mt-2 text-xl font-semibold">
-                  {card.value}
-                </p>
-              </motion.div>
-            ))}
+                  <p className="mt-3 break-words text-lg font-semibold md:text-xl">
+                    {card.value}
+                  </p>
+                </motion.div>
+              )
+            )}
           </div>
 
           {/* Quote */}
-          <div className="mt-14 text-center">
-            <p className="text-lg italic text-gray-400">
-              "Success in interviews isn't luck. It's preparation."
+          <div className="mt-20 text-center">
+            <p className="mx-auto max-w-3xl text-lg italic text-gray-400">
+              "Success in interviews is not luck.
+              It is preparation, consistency and confidence."
             </p>
           </div>
 
           {/* Button */}
           <div className="mt-12 text-center">
             <Link to="/technology">
-              <button className="rounded-2xl bg-cyan-500 px-10 py-4 text-lg font-semibold transition hover:scale-110 hover:bg-cyan-400">
-                Start Interview Preparation 🚀
+              <button className="rounded-2xl bg-cyan-500 px-10 py-4 text-lg font-semibold text-black transition duration-300 hover:scale-105 hover:bg-cyan-400">
+                Start Interview Preparation
               </button>
             </Link>
           </div>
-        </motion.div>
+
+          {/* About Platform */}
+          <div className="mt-24">
+            <IntroCard />
+          </div>
+
+        </div>
+
+        <Footer />
       </div>
     </div>
   );

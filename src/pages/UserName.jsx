@@ -74,7 +74,7 @@ function UserName() {
           className="w-full max-w-4xl rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur-xl"
         >
           <h1 className="text-center text-4xl font-bold">
-            Welcome Future Developer 🚀
+            Welcome Future Developer 
           </h1>
 
           <p className="mt-3 text-center text-gray-300">
@@ -265,7 +265,7 @@ function UserName() {
             onClick={handleContinue}
             className="mt-10 w-full rounded-2xl bg-cyan-500 py-4 text-lg font-semibold transition hover:scale-[1.02] hover:bg-cyan-400"
           >
-            Continue 🚀
+            Continue 
           </button>
         </motion.div>
       </div>

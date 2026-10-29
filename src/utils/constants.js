@@ -17,7 +17,7 @@ export const technologyMap = {
     "Python",
     "Machine Learning",
     "Statistics",
-    "Pandas & NumPy",
+    "Pandas",
   ],
 
   "Data Analytics": [
@@ -44,8 +44,8 @@ export const technologyMap = {
   "Cyber Security": [
     "Networking",
     "Linux",
-    "Web Security",
     "Ethical Hacking",
+    "Web Security",
   ],
 
   "DevOps": [
